@@ -20,7 +20,11 @@ module.exports = {
             }
           })
         }
-        io.on('job.status.tested', onTested)
+        io.on('job.status.tested', function (id, data) {
+          if (job._id === id) {
+            onTested(id, data);
+          }
+        });
       }
     })
   },
